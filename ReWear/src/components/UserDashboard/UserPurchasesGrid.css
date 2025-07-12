@@ -1,127 +1,82 @@
 /* src/components/UserDashboard/UserPurchasesGrid.css */
 
-.item-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-  margin: 0 20px 40px;
-}
+@import 'react-horizontal-scrolling-menu/dist/styles.css';
 
-.item-card {
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.2s ease-in-out;
-}
-
-.item-card:hover {
-  transform: translateY(-5px);
-}
-
-.item-img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 10px;
-}
-
-.item-title {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #2d3748;
-  margin-bottom: 6px;
-}
-
-.item-meta {
-  font-size: 0.85rem;
-  color: #718096;
-  margin-bottom: 4px;
-}
-
-.item-status {
-  font-size: 0.8rem;
-  font-weight: 500;
-  padding: 6px 10px;
-  border-radius: 999px;
-  width: fit-content;
-  text-transform: capitalize;
-}
-
-.redeemed {
-  background-color: #bee3f8;
-  color: #2a4365;
-}
-
-@media screen and (max-width: 768px) {
-  .item-img {
-    height: 150px;
-  }
-
-  .item-title {
-    font-size: 0.95rem;
-  }
-
-  .item-meta {
-    font-size: 0.75rem;
-  }
-
-  .item-status {
-    font-size: 0.7rem;
-    padding: 4px 8px;
-  }
-}
-
+/* UserListingsGrid-like Section Styling */
 .purchases-section {
-  margin: 40px 32px;
+  padding: 30px 40px; /* Aligned with UserListingsGrid */
+  background: #f9fafc; /* Aligned with UserListingsGrid */
+  border-radius: 12px; /* Aligned with UserListingsGrid */
+  max-width: 1200px; /* Optional: to center the content */
+  margin: 0 auto 40px auto; /* Centered, with bottom margin for spacing */
 }
 
 .section-heading {
-  font-size: 1.6rem;
+  font-size: 1.8rem; /* Larger, aligned with UserListingsGrid title */
+  color: #2d3748; /* Aligned with UserListingsGrid title */
   font-weight: 700;
-  color: #2a4365;
-  margin-bottom: 24px;
-  padding-left: 6px;
-  border-left: 6px solid #667eea;
+  margin-bottom: 20px; /* Reduced margin */
+  text-align: left; /* Aligned left */
+  padding-left: 0; /* Remove left padding */
+  border-left: none; /* Remove border */
 }
 
-.item-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 28px;
+
+/* Horizontal Scrollable Container (from react-horizontal-scrolling-menu) */
+.horizontal-scroll-container {
+  width: 100%;
+  padding: 0 10px; /* Provides some horizontal padding for cards at edges */
 }
 
-.item-card {
-  background: #ffffff;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-  transition: all 0.3s ease;
+/* Hide scrollbar */
+.react-horizontal-scrolling-menu--scroll-container {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.react-horizontal-scrolling-menu--scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Adjustments for items within the horizontal scrolling menu */
+.react-horizontal-scrolling-menu--item {
+  margin-right: 20px; /* Space between cards */
   display: flex;
-  flex-direction: column;
-  border: 1px solid #f0f0f0;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* Item Card Styles - Enhanced to match UserListingsGrid */
+.item-card {
+  min-width: 240px; /* Aligned with UserListingsGrid card width */
+  background: #ffffff;
+  border-radius: 14px; /* Aligned with UserListingsGrid */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07); /* Aligned with UserListingsGrid */
+  transition: transform 0.2s ease-in-out;
+  flex-shrink: 0;
+  /* Remove old conflicting styles */
+  border: none; /* Remove border */
+  overflow: hidden; /* Ensure rounded corners clip content */
 }
 
 .item-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+  transform: translateY(-6px); /* Aligned with UserListingsGrid */
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.1); /* Slightly more pronounced hover shadow */
 }
 
 .item-img-wrapper {
   position: relative;
-  width: 100%;
-  height: 180px;
+  border-radius: 14px 14px 0 0; /* Match UserListingsGrid for top corners */
   overflow: hidden;
+  height: 180px; /* Aligned with UserListingsGrid */
+  width: 100%; /* Ensure it takes full width */
 }
 
 .item-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: scale 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .item-card:hover .item-img {
@@ -130,51 +85,56 @@
 
 .item-status-badge {
   position: absolute;
-  top: 12px;
-  left: 12px;
-  padding: 6px 12px;
+  top: 10px; /* Aligned with UserListingsGrid */
+  left: 10px; /* Aligned with UserListingsGrid */
+  background: #38a169; /* Default green, similar to "Available" */
+  color: white;
   font-size: 0.75rem;
-  font-weight: 600;
-  border-radius: 20px;
-  background-color: #edf2f7;
-  color: #2d3748;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 4px 10px; /* Aligned with UserListingsGrid */
+  border-radius: 12px; /* Aligned with UserListingsGrid */
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  /* Removed box-shadow and letter-spacing for simplicity/alignment with UserListingsGrid's badge */
 }
 
-/* Status Colors */
-.redeemed {
-  background-color: #bee3f8;
-  color: #2a4365;
+/* Specific status colors */
+.item-status-badge.redeemed {
+  background-color: #d69e2e; /* Using a similar 'swapped' color for 'redeemed' */
+  color: white;
 }
 
 .item-content {
-  padding: 16px 20px;
+  padding: 14px 16px; /* Aligned with UserListingsGrid */
 }
 
 .item-title {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #2a4365;
+  font-size: 1rem; /* Aligned with UserListingsGrid */
+  font-weight: 600; /* Aligned with UserListingsGrid */
+  color: #2d3748; /* Aligned with UserListingsGrid */
   margin-bottom: 6px;
 }
 
 .item-meta {
-  font-size: 0.88rem;
-  color: #718096;
+  font-size: 0.88rem; /* Aligned with UserListingsGrid */
+  color: #4a5568; /* Aligned with UserListingsGrid */
 }
 
-/* Responsive */
+/* Responsive styles */
 @media screen and (max-width: 768px) {
+  .purchases-section {
+    padding: 20px 30px;
+  }
+  .section-heading {
+    font-size: 1.6rem;
+  }
+  .item-card {
+    min-width: 200px; /* Aligned with UserListingsGrid responsive */
+  }
   .item-img-wrapper {
     height: 150px;
   }
-
   .item-title {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
-
   .item-meta {
     font-size: 0.8rem;
   }
@@ -182,22 +142,25 @@
 
 @media screen and (max-width: 480px) {
   .purchases-section {
-    margin: 32px 16px;
+    padding: 20px;
+    margin: 0 auto 30px auto;
   }
-
-  .item-grid {
-    gap: 20px;
+  .section-heading {
+    font-size: 1.4rem;
   }
-
+  .item-card {
+    min-width: 180px; /* Slightly smaller for very small screens */
+  }
+  .react-horizontal-scrolling-menu--item {
+    margin-right: 15px; /* Smaller gap */
+  }
   .item-img-wrapper {
     height: 140px;
   }
-
   .item-content {
-    padding: 14px 16px;
+    padding: 12px 14px;
   }
-
   .item-title {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
   }
 }

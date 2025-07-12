@@ -1,16 +1,17 @@
+import React, { useState } from "react";
 import "./UserDashboard.css";
 import "./Navbar.css";
 import "./UserProfile.css";
 import "./EditProfileModal.css";
 
+// Component Imports
 import Navbar from "./Navbar";
 import UserProfile from "./UserProfile";
 import UserListingsGrid from "./UserListingsGrid";
 import UserPurchasesGrid from "./UserPurchasesGrid";
 import EditProfileModal from "./EditProfileModal";
 
-import React, { useState } from "react";
-
+// Dummy Listings
 const dummyListings = [
   {
     id: 1,
@@ -28,6 +29,7 @@ const dummyListings = [
   },
 ];
 
+// Dummy Purchases
 const dummySwaps = [
   {
     id: 101,
@@ -38,6 +40,7 @@ const dummySwaps = [
   },
 ];
 
+// Main Component
 const UserDashboard = () => {
   const [user, setUser] = useState({
     name: "Anika Sharma",
@@ -46,10 +49,12 @@ const UserDashboard = () => {
     address: "Kolkata, West Bengal",
     bio: "Fashion lover and sustainability enthusiast!",
     points: 120,
+    profileImage: "images/dummy_profile.png", // ✅ initial profile image
   });
 
   const [isModalOpen, setModalOpen] = useState(false);
 
+  // Handle profile update from modal
   const handleSaveProfile = (updatedData) => {
     setUser((prevUser) => ({
       ...prevUser,
@@ -60,10 +65,19 @@ const UserDashboard = () => {
 
   return (
     <div className="dashboard-wrapper">
+      {/* Navbar */}
       <Navbar />
+
+      {/* Profile Section */}
       <UserProfile user={user} onEdit={() => setModalOpen(true)} />
+
+      {/* My Listings */}
       <UserListingsGrid listings={dummyListings} />
+
+      {/* My Purchases / Swaps */}
       <UserPurchasesGrid purchases={dummySwaps} />
+
+      {/* Edit Modal */}
       {isModalOpen && (
         <EditProfileModal
           user={user}

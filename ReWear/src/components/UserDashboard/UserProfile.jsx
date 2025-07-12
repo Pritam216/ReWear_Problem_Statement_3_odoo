@@ -6,7 +6,7 @@ const UserProfile = ({ user, onEdit }) => {
     <div className="profile-section">
       <div className="left-column">
         <img
-          src="images/dummy_profile.png"
+          src={user.profileImage || "images/dummy_profile.png"}
           alt="profile"
           className="profile-img"
         />
