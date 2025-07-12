@@ -1,0 +1,134 @@
+/* UserProfile.css */
+
+.profile-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  background: linear-gradient(145deg, #f9f9f9, #e3e8f0);
+  padding: 40px;
+  border-radius: 24px;
+  margin: 40px 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.left-column {
+  flex-shrink: 0;
+}
+
+.profile-img {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 6px solid #63b3ed;
+  background-color: #fff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+.right-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.right-column h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2a4365;
+  margin: 0;
+}
+
+.info-box {
+  background-color: #f8fbff;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-size: 1rem;
+  color: #2d3748;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.info-box strong {
+  color: #2b6cb0;
+  font-weight: 600;
+}
+
+.green-points {
+  background-color: #e6fffa;
+  color: #2f855a;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 10px 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 128, 0, 0.1);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.edit-btn {
+  align-self: flex-start;
+  margin-top: 8px;
+  padding: 12px 28px;
+  background: linear-gradient(to right, #667eea, #764ba2);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 14px;
+  box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.edit-btn:hover {
+  background: linear-gradient(to right, #5a67d8, #6b46c1);
+  transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .profile-section {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 30px;
+  }
+
+  .header-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .edit-btn {
+    align-self: center;
+  }
+
+  .green-points {
+    align-self: center;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .profile-img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .right-column h2 {
+    font-size: 1.6rem;
+  }
+
+  .info-box {
+    font-size: 0.95rem;
+  }
+}
