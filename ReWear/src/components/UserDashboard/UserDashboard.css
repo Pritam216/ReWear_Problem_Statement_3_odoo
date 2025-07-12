@@ -1,0 +1,21 @@
+.dashboard-wrapper {
+  /* padding: 24px; */
+  max-width: 100%;
+  /* margin: 0 auto; */
+  background-color: #f7fafc; /* light gray background */
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.dashboard-grids {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin-top: 32px;
+}
+
+@media screen and (min-width: 768px) {
+  .dashboard-grids {
+    grid-template-columns: 1fr 1fr;
+  }
+}

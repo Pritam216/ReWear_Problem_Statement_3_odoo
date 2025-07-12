@@ -1,0 +1,166 @@
+/* src/components/UserDashboard/UserPurchasesGrid.css */
+
+@import 'react-horizontal-scrolling-menu/dist/styles.css';
+
+/* UserListingsGrid-like Section Styling */
+.purchases-section {
+  padding: 30px 40px; /* Aligned with UserListingsGrid */
+  background: #f9fafc; /* Aligned with UserListingsGrid */
+  border-radius: 12px; /* Aligned with UserListingsGrid */
+  max-width: 1200px; /* Optional: to center the content */
+  margin: 0 auto 40px auto; /* Centered, with bottom margin for spacing */
+}
+
+.section-heading {
+  font-size: 1.8rem; /* Larger, aligned with UserListingsGrid title */
+  color: #2d3748; /* Aligned with UserListingsGrid title */
+  font-weight: 700;
+  margin-bottom: 20px; /* Reduced margin */
+  text-align: left; /* Aligned left */
+  padding-left: 0; /* Remove left padding */
+  border-left: none; /* Remove border */
+}
+
+
+/* Horizontal Scrollable Container (from react-horizontal-scrolling-menu) */
+.horizontal-scroll-container {
+  width: 100%;
+  padding: 0 10px; /* Provides some horizontal padding for cards at edges */
+}
+
+/* Hide scrollbar */
+.react-horizontal-scrolling-menu--scroll-container {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.react-horizontal-scrolling-menu--scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Adjustments for items within the horizontal scrolling menu */
+.react-horizontal-scrolling-menu--item {
+  margin-right: 20px; /* Space between cards */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* Item Card Styles - Enhanced to match UserListingsGrid */
+.item-card {
+  min-width: 240px; /* Aligned with UserListingsGrid card width */
+  background: #ffffff;
+  border-radius: 14px; /* Aligned with UserListingsGrid */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07); /* Aligned with UserListingsGrid */
+  transition: transform 0.2s ease-in-out;
+  flex-shrink: 0;
+  /* Remove old conflicting styles */
+  border: none; /* Remove border */
+  overflow: hidden; /* Ensure rounded corners clip content */
+}
+
+.item-card:hover {
+  transform: translateY(-6px); /* Aligned with UserListingsGrid */
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.1); /* Slightly more pronounced hover shadow */
+}
+
+.item-img-wrapper {
+  position: relative;
+  border-radius: 14px 14px 0 0; /* Match UserListingsGrid for top corners */
+  overflow: hidden;
+  height: 180px; /* Aligned with UserListingsGrid */
+  width: 100%; /* Ensure it takes full width */
+}
+
+.item-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.item-card:hover .item-img {
+  transform: scale(1.05);
+}
+
+.item-status-badge {
+  position: absolute;
+  top: 10px; /* Aligned with UserListingsGrid */
+  left: 10px; /* Aligned with UserListingsGrid */
+  background: #38a169; /* Default green, similar to "Available" */
+  color: white;
+  font-size: 0.75rem;
+  padding: 4px 10px; /* Aligned with UserListingsGrid */
+  border-radius: 12px; /* Aligned with UserListingsGrid */
+  text-transform: uppercase;
+  /* Removed box-shadow and letter-spacing for simplicity/alignment with UserListingsGrid's badge */
+}
+
+/* Specific status colors */
+.item-status-badge.redeemed {
+  background-color: #d69e2e; /* Using a similar 'swapped' color for 'redeemed' */
+  color: white;
+}
+
+.item-content {
+  padding: 14px 16px; /* Aligned with UserListingsGrid */
+}
+
+.item-title {
+  font-size: 1rem; /* Aligned with UserListingsGrid */
+  font-weight: 600; /* Aligned with UserListingsGrid */
+  color: #2d3748; /* Aligned with UserListingsGrid */
+  margin-bottom: 6px;
+}
+
+.item-meta {
+  font-size: 0.88rem; /* Aligned with UserListingsGrid */
+  color: #4a5568; /* Aligned with UserListingsGrid */
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+  .purchases-section {
+    padding: 20px 30px;
+  }
+  .section-heading {
+    font-size: 1.6rem;
+  }
+  .item-card {
+    min-width: 200px; /* Aligned with UserListingsGrid responsive */
+  }
+  .item-img-wrapper {
+    height: 150px;
+  }
+  .item-title {
+    font-size: 0.95rem;
+  }
+  .item-meta {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .purchases-section {
+    padding: 20px;
+    margin: 0 auto 30px auto;
+  }
+  .section-heading {
+    font-size: 1.4rem;
+  }
+  .item-card {
+    min-width: 180px; /* Slightly smaller for very small screens */
+  }
+  .react-horizontal-scrolling-menu--item {
+    margin-right: 15px; /* Smaller gap */
+  }
+  .item-img-wrapper {
+    height: 140px;
+  }
+  .item-content {
+    padding: 12px 14px;
+  }
+  .item-title {
+    font-size: 0.9rem;
+  }
+}
