@@ -1,59 +1,8 @@
 // src/context/ProjectDataContext.jsx
 import React, { createContext, useReducer, useEffect } from "react";
 
-// --- Initial Dummy Data ---
-const initialListings = [
-  {
-    id: "1",
-    title: "Vintage Denim Jacket",
-    smallDescription: "A classic piece in great condition.",
-    description:
-      "This is a truly unique vintage denim jacket from the 80s, perfect for adding a retro touch to your wardrobe. It features a faded wash and minimal distressing, making it highly versatile for various styles. Originally sourced from a local thrift store, it has been professionally cleaned and is ready for its new owner. Ideal for casual outings or layering.",
-    image: "https://via.placeholder.com/400x300/ADD8E6/000000?text=DenimJacket",
-    uploaded: "2023-01-15",
-    status: "Available",
-  },
-  {
-    id: "2",
-    title: "Hand-knitted Scarf",
-    smallDescription: "Warm and cozy, made with natural wool.",
-    description:
-      "Luxuriously soft hand-knitted scarf, crafted with 100% organic merino wool. This unique piece offers exceptional warmth and breathability, perfect for cold winter days. Its intricate pattern showcases hours of dedicated craftsmanship. A sustainable choice for conscious consumers.",
-    image: "https://via.placeholder.com/400x300/90EE90/000000?text=Scarf",
-    uploaded: "2023-02-20",
-    status: "Available",
-  },
-  {
-    id: "3",
-    title: "Ceramic Plant Pot",
-    smallDescription: "Hand-painted, unique design.",
-    description:
-      "Add a touch of artistry to your plant collection with this hand-painted ceramic pot. Each pot features a unique, abstract design, ensuring no two are exactly alike. Made from durable, high-quality ceramic, it includes a drainage hole and a saucer. Perfect for small to medium-sized indoor plants.",
-    image: "https://via.placeholder.com/400x300/FFB6C1/000000?text=PlantPot",
-    uploaded: "2023-03-10",
-    status: "Swapped",
-  },
-  {
-    id: "4",
-    title: "Leather Bound Journal",
-    smallDescription: "Unused, perfect for notes or sketches.",
-    description:
-      "A beautifully crafted leather-bound journal with 200 pages of acid-free, cream-colored paper. Its rustic charm is enhanced by a genuine leather cover that ages gracefully. Ideal for journaling, sketching, or as a thoughtful gift. The compact size makes it easy to carry everywhere.",
-    image: "https://via.placeholder.com/400x300/D3D3D3/000000?text=Journal",
-    uploaded: "2023-04-01",
-    status: "Available",
-  },
-  {
-    id: "5",
-    title: "Vintage Camera",
-    smallDescription: "Collectable item, untested.",
-    description:
-      'A charming vintage camera, model "Zenith B", from the 1970s. This piece is ideal for collectors or as a decorative item. It has not been tested for functionality but appears to be in good cosmetic condition with minor signs of wear consistent with its age. A great conversation starter for any enthusiast.',
-    image: "https://via.placeholder.com/400x300/FFD700/000000?text=Camera",
-    uploaded: "2023-05-05",
-    status: "Swapped",
-  },
-];
+// --- Initial Dummy Data (used only as fallback) ---
+const initialListings = [];
 
 const initialCustomerInterests = [
   {
@@ -87,17 +36,10 @@ const initialCustomerInterests = [
 ];
 
 // --- Initial State Loader (NO localStorage interaction) ---
-const getInitialState = () => {
-  // Directly return the initial dummy data
-  console.log(
-    "ProjectDataContext: Initial state loaded (no localStorage). Listings count:",
-    initialListings.length
-  );
-  return {
-    listings: initialListings,
-    customerInterests: initialCustomerInterests,
-  };
-};
+const getInitialState = () => ({
+  listings: initialListings,
+  customerInterests: initialCustomerInterests,
+});
 
 // --- Reducer Function ---
 function projectDataReducer(state, action) {
@@ -162,21 +104,28 @@ export const ProjectDataDispatchContext = createContext(() => {
 
 // --- Project Data Provider Component ---
 export const ProjectDataProvider = ({ children }) => {
-  // useReducer initializes state using getInitialState once
   const [state, dispatch] = useReducer(
     projectDataReducer,
     null,
     getInitialState
   );
 
-  // Removed useEffects for localStorage persistence
-  // There are no side effects for saving/loading data now.
+  // Fetch listings from backend on mount
+  React.useEffect(() => {
+    fetch("/public/listings")
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch({ type: "SET_LISTINGS", payload: data });
+      })
+      .catch((err) => {
+        console.error("Failed to fetch listings from backend", err);
+      });
+  }, []);
 
   return (
     <ProjectDataContext.Provider value={state}>
       <ProjectDataDispatchContext.Provider value={dispatch}>
-        {children}{" "}
-        {/* Renders all child components that need access to the context */}
+        {children}
       </ProjectDataDispatchContext.Provider>
     </ProjectDataContext.Provider>
   );

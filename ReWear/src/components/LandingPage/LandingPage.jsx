@@ -7,55 +7,19 @@ import HeroImages from "./HeroImages";
 import CategoriesSection from "./CategoriesSection";
 import ProductListingsSection from "./ProductListingsSection";
 
-const LandingPage = () => {
-  // Dummy data for categories and products to visualize the layout
-  const categories = [
-    { id: "cat1", name: "Electronics" },
-    { id: "cat2", name: "Clothing" },
-    { id: "cat3", name: "Home Goods" },
-    { id: "cat4", name: "Books" },
-    { id: "cat5", name: "Furniture" },
-    { id: "cat6", name: "Art" },
-  ];
+import { useProjectDataState } from "../components/context/ProjectDataContext";
 
-  const products = [
-    {
-      id: "prod1",
-      title: "Smart Watch",
-      description: "Latest model",
-      image: "https://via.placeholder.com/300x200/DDEEFF/333333?text=Product+1",
-    },
-    {
-      id: "prod2",
-      title: "Summer Dress",
-      description: "Light & breezy",
-      image: "https://via.placeholder.com/300x200/EEDDFF/333333?text=Product+2",
-    },
-    {
-      id: "prod3",
-      title: "Coffee Maker",
-      description: "Brew perfect coffee",
-      image: "https://via.placeholder.com/300x200/FFEEDD/333333?text=Product+3",
-    },
-    {
-      id: "prod4",
-      title: "Fantasy Novel",
-      description: "Epic adventure",
-      image: "https://via.placeholder.com/300x200/FFDDFF/333333?text=Product+4",
-    },
-    {
-      id: "prod5",
-      title: "Vintage Lamp",
-      description: "Unique decor",
-      image: "https://via.placeholder.com/300x200/DDFFEE/333333?text=Product+5",
-    },
-    {
-      id: "prod6",
-      title: "Painting",
-      description: "Abstract art",
-      image: "https://via.placeholder.com/300x200/EEFFDD/333333?text=Product+6",
-    },
-  ];
+const categories = [
+  { id: "cat1", name: "Electronics" },
+  { id: "cat2", name: "Clothing" },
+  { id: "cat3", name: "Home Goods" },
+  { id: "cat4", name: "Books" },
+  { id: "cat5", name: "Furniture" },
+  { id: "cat6", name: "Art" },
+];
+
+const LandingPage = () => {
+  const { listings } = useProjectDataState();
 
   return (
     <div className="landing-page">
@@ -68,7 +32,7 @@ const LandingPage = () => {
         <HeroImages />
       </section>
       <CategoriesSection categories={categories} />
-      <ProductListingsSection products={products} />
+      <ProductListingsSection products={listings} />
       <footer className="landing-footer">
         <p>&copy; {new Date().getFullYear()} Rewear. All rights reserved.</p>
       </footer>
