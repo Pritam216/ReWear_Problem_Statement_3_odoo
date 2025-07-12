@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./UserDashboard.css";
 import "./Navbar.css";
 import "./UserProfile.css";
@@ -42,6 +43,11 @@ const dummySwaps = [
 
 // Main Component
 const UserDashboard = () => {
+  const navigate = useNavigate();
+  // Handler to open product detail page
+  const handleProductClick = (productId) => {
+    navigate(`/myDashboard/listings/${productId}`);
+  };
   const [user, setUser] = useState({
     name: "Anika Sharma",
     email: "anika@example.com",
@@ -72,7 +78,10 @@ const UserDashboard = () => {
       <UserProfile user={user} onEdit={() => setModalOpen(true)} />
 
       {/* My Listings */}
-      <UserListingsGrid listings={dummyListings} />
+      <UserListingsGrid
+        listings={dummyListings}
+        onProductClick={handleProductClick}
+      />
 
       {/* My Purchases / Swaps */}
       <UserPurchasesGrid purchases={dummySwaps} />

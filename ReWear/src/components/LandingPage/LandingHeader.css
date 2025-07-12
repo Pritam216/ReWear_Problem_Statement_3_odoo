@@ -1,0 +1,19 @@
+.landing-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #181818;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #333;
+}
+.logo {
+  font-size: 2rem;
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+.user-profile-icon {
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+}
